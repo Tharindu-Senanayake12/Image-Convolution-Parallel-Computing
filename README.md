@@ -1,6 +1,52 @@
-Accelerate Image convolution using parallel computing techniques to achieve faster processing times.
+Image convolution is a fundamental operation in image processing. It is used for blurring, sharpening, edge detection, smoothing, and many other transformations.
+This project applies convolution kernels to an input image and evaluates the performance of parallel execution compared to a serial baseline.
 
-Programming language: Python
-Parallel framework: Python multiprocessing / OpenMP / CUDA threads
-Libraries: NumPy, OpenCV
-Metrics: execution time, speedup, efficiency, CPU usage
+The project contains the following:
+
+Serial image convolution
+
+Parallel convolution using Python multiprocessing
+
+Adjustable kernel sizes and intensity
+
+CLI support for experiments
+
+Execution time measurement
+
+Side by side output comparison
+
+Features
+
+Multiple built in kernels
+
+Blur
+
+Sharpen
+
+Edge detection
+
+Custom kernels
+
+Parallel convolution using process based parallelism
+
+Ability to change blur intensity by adjusting kernel size
+
+Clean and modular code structure
+
+Automatic image chunk splitting for workers
+
+Support for large images
+
+CLI arguments for easy testing
+
+Technologies Used
+
+Python
+
+OpenCV (cv2) for image loading and saving
+
+NumPy for matrix calculations
+
+Multiprocessing module for parallelism
+
+Time measurement for benchmarking
