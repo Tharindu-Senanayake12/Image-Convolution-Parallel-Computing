@@ -1,8 +1,3 @@
-Here is a clean and professional GitHub README tailored for your **Parallel Image Convolution / Filtering** project.
-It avoids em dashes as you requested.
-
----
-
 # **Parallel Image Convolution and Filtering**
 
 This project implements image convolution using both serial and parallel approaches to demonstrate performance improvement through parallel computing techniques. The focus is on applying common image filters while comparing execution time between normal CPU processing and parallel processing using multiple cores.
