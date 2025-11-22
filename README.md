@@ -46,3 +46,13 @@ The project contains the following:
 * Time measurement for benchmarking
 
 ---
+
+## **Performance Evaluation**
+
+* The project outputs the execution time for both modes. By running multiple tests you can measure:
+  * Speedup
+  * Efficiency
+  * Effect of kernel size
+  * Effect of number of workers
+  * Impact of image size
+  * This helps understand practical performance gains from parallel computing.
