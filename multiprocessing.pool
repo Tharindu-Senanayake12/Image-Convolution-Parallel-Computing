@@ -1,0 +1,93 @@
+import cv2
+import numpy as np
+import time
+from multiprocessing import Pool
+
+BLUR_KERNEL = np.ones((7, 7), dtype=np.float32) / 49.0
+
+def pad_image(img, pad, mode="reflect"):
+    return np.pad(img, ((pad, pad), (pad, pad), (0, 0)), mode=mode)
+
+def convolve_patch(src, kernel, x, y):
+    h_k, w_k = kernel.shape
+    half = h_k // 2
+    patch = src[y - half : y + half + 1, x - half : x + half + 1]
+    return np.tensordot(kernel, patch, axes=([0, 1], [0, 1]))
+
+def serial_blur(img):
+    h, w = img.shape[:2]
+    kernel = BLUR_KERNEL
+    pad = kernel.shape[0] // 2
+
+    src = pad_image(img, pad)
+    dst = np.zeros_like(img, dtype=np.float32)
+
+    start_time = time.time()
+    for y in range(pad, pad + h):
+        for x in range(pad, pad + w):
+            dst[y - pad, x - pad] = convolve_patch(src, kernel, x, y)
+    duration = time.time() - start_time
+    print(f"Serial blur completed in {duration:.4f} seconds")
+    return np.clip(dst, 0, 255).astype(np.uint8)
+
+# Parallel 
+def process_chunk(args):
+    img, kernel, start_row, end_row = args
+    h, w = img.shape[:2]
+    pad = kernel.shape[0] // 2
+    src = pad_image(img, pad)
+    dst_chunk = np.zeros((end_row - start_row, w, img.shape[2]), dtype=np.float32)
+
+    for y in range(start_row + pad, end_row + pad):
+        for x in range(pad, w + pad):
+            dst_chunk[y - pad - start_row, x - pad] = convolve_patch(src, kernel, x, y)
+    return (start_row, dst_chunk)
+
+def parallel_blur(img, workers=4):
+    h, w = img.shape[:2]
+    kernel = BLUR_KERNEL
+    chunk_size = h // workers
+    args_list = []
+
+    for i in range(workers):
+        start_row = i * chunk_size
+        end_row = (i + 1) * chunk_size if i != workers - 1 else h
+        args_list.append((img, kernel, start_row, end_row))
+
+    start_time = time.time()
+    dst = np.zeros_like(img, dtype=np.float32)
+    with Pool(processes=workers) as pool:
+        results = pool.map(process_chunk, args_list)
+
+    for start_row, chunk in results:
+        dst[start_row:start_row + chunk.shape[0], :, :] = chunk
+
+    duration = time.time() - start_time
+    print(f"Parallel blur completed with {workers} workers in {duration:.4f} seconds")
+    return np.clip(dst, 0, 255).astype(np.uint8)
+
+def main():
+    img = cv2.imread("sample.jpg")
+    if img is None:
+        print("Image not found")
+        return
+
+    if img.ndim == 2:
+        img = img[:, :, np.newaxis]
+    img = img.astype(np.float32)
+
+    print(f"Input image shape: {img.shape}, dtype: {img.dtype}")
+    print(f"Kernel used: {BLUR_KERNEL.shape}, sum={BLUR_KERNEL.sum():.2f}")
+
+    # Serial blur
+    out_serial = serial_blur(img)
+    cv2.imwrite("output_blur_serial.png", out_serial)
+
+    # Parallel blur
+    out_parallel = parallel_blur(img, workers=4)
+    cv2.imwrite("output_blur_parallel.png", out_parallel)
+
+    print("Output images saved: output_blur_serial.png, output_blur_parallel.png")
+
+if __name__ == "__main__":
+    main()
