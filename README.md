@@ -81,3 +81,6 @@ The project contains the following:
 
   pip install numpy opencv-python
 
+  python parallel_convolution.py --input sample.jpg --kernel blur --mode serial
+
+  python parallel_convolution.py --input sample.jpg --kernel blur --mode parallel --workers 4
