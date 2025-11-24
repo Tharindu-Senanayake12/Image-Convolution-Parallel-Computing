@@ -47,7 +47,7 @@ The project contains the following:
 
 ---
 
-How the Parallel Approach Works
+## **How the Parallel Approach Works**
 
 * The input image is divided into equal row based chunks
 * Each process receives a portion of the image
@@ -55,8 +55,7 @@ How the Parallel Approach Works
 * The results are merged into a final output image
 * Parallel execution reduces total computation time
 
-
-
+---
 
 ## **Performance Evaluation**
 
