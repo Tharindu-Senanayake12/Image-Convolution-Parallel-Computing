@@ -56,3 +56,24 @@ The project contains the following:
   * Effect of number of workers
   * Impact of image size
   * This helps understand practical performance gains from parallel computing.
+
+
+## **Code Architecture**
+
+* read_image
+Loads the image safely
+
+generate_kernel
+Creates blur, sharpen, or edge kernels
+
+convolve_serial
+Runs full convolution using a single CPU core
+
+convolve_parallel
+Splits the image and processes chunks in parallel
+
+merge_results
+Combines processed chunks into the final output
+
+main
+Argument parsing and flow control
