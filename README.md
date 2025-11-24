@@ -84,3 +84,6 @@ The project contains the following:
   python parallel_convolution.py --input sample.jpg --kernel blur --mode serial
 
   python parallel_convolution.py --input sample.jpg --kernel blur --mode parallel --workers 4
+
+
+  python parallel_convolution.py --input sample.jpg --kernel blur --kernel-size 11 --mode parallel
