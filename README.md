@@ -77,15 +77,15 @@ The project contains the following:
 
 
 
+## **Usage**
+* Install required libraries
+  * pip install numpy opencv-python
 
-Install required libraries
-  pip install numpy opencv-python
+* Run Serial Mode
+  * python parallel_convolution.py --input sample.jpg --kernel blur --mode serial
 
-Run Serial Mode
-  python parallel_convolution.py --input sample.jpg --kernel blur --mode serial
+* Run Parallel Mode
+  * python parallel_convolution.py --input sample.jpg --kernel blur --mode parallel --workers 4
 
-Run Parallel Mode
-  python parallel_convolution.py --input sample.jpg --kernel blur --mode parallel --workers 4
-
-Change Blur Intensity
-  python parallel_convolution.py --input sample.jpg --kernel blur --kernel-size 11 --mode parallel
+* Change Blur Intensity
+  * python parallel_convolution.py --input sample.jpg --kernel blur --kernel-size 11 --mode parallel
