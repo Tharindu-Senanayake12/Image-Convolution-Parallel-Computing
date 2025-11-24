@@ -49,11 +49,11 @@ The project contains the following:
 
 How the Parallel Approach Works
 
-The input image is divided into equal row based chunks
-Each process receives a portion of the image
-Each process performs convolution independently
-The results are merged into a final output image
-Parallel execution reduces total computation time
+* The input image is divided into equal row based chunks
+* Each process receives a portion of the image
+* Each process performs convolution independently
+* The results are merged into a final output image
+* Parallel execution reduces total computation time
 
 
 
