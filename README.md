@@ -57,6 +57,7 @@ The project contains the following:
   * Impact of image size
   * This helps understand practical performance gains from parallel computing.
 
+---
 
 ## **Code Architecture**
 
@@ -73,9 +74,7 @@ The project contains the following:
 * main
   * Argument parsing and flow control
 
-
-
-
+---
 
 ## **Usage**
 * Install required libraries
