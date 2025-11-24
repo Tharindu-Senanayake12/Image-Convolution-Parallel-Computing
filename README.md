@@ -61,19 +61,14 @@ The project contains the following:
 ## **Code Architecture**
 
 * read_image
-Loads the image safely
-
-generate_kernel
-Creates blur, sharpen, or edge kernels
-
-convolve_serial
-Runs full convolution using a single CPU core
-
-convolve_parallel
-Splits the image and processes chunks in parallel
-
-merge_results
-Combines processed chunks into the final output
-
-main
-Argument parsing and flow control
+  * Loads the image safely
+* generate_kernel
+  * Creates blur, sharpen, or edge kernels
+* convolve_serial
+  * Runs full convolution using a single CPU core
+* convolve_parallel
+  * Splits the image and processes chunks in parallel
+* merge_results
+  * Combines processed chunks into the final output
+* main
+  * Argument parsing and flow control
