@@ -72,3 +72,12 @@ The project contains the following:
   * Combines processed chunks into the final output
 * main
   * Argument parsing and flow control
+
+
+
+
+
+
+
+  pip install numpy opencv-python
+
