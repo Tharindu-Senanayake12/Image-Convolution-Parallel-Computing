@@ -23,6 +23,12 @@ The system includes:
 
 ---
 
+## **Dashboard**
+
+<img src="screenshots/dashboard.png" width="700"/>
+
+---
+
 ## **Features**
 
 * Built in filters
